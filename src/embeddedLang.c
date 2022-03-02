@@ -86,6 +86,12 @@ eL_VM_t* new_eL_VM() {
 }
 
 int eL_VM_load(eL_VM_t* vm, char code[]) {
+
+    /*-----------------------------------*/
+
+    while(code[strlen(code) - 1] == ' ' || code[strlen(code) - 1] == '\n')
+        code[strlen(code) - 1] = '\0';
+
     code[strlen(code) - 1] = '\0';
 
     char** result = 0;
@@ -120,6 +126,8 @@ int eL_VM_load(eL_VM_t* vm, char code[]) {
     if(!result)
         return 1;
 
+    /*-----------------------------------*/
+
     size_t idx = 0;
 
     char* token = strtok(code, delim);
@@ -138,6 +146,8 @@ int eL_VM_load(eL_VM_t* vm, char code[]) {
     vm->function_list = malloc(sizeof(eL_Function_t*) * func_count);
     vm->func_list_lenght = func_count;
     
+    /*-----------------------------------*/
+
     for(int i = 0; *(result + i); i ++) {
         char* operand = *(result + i);
 

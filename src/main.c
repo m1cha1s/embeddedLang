@@ -39,7 +39,7 @@ return // Pop adress from
 */
 
 int main() {
-    char code[] = "main:; 2; 3; +; println; 7; +; println; return;";
+    char code[] = "main:; 2; 3; +; println; 7; +; println; return;  ";
     eL_VM_t* vm = new_eL_VM();
     eL_VM_load(vm, code);
 
@@ -49,7 +49,7 @@ int main() {
     while(!err)
         err = eL_VM_tick(vm);
 
-    printf("Exited with code: %d\n", err);
+    printf("Exited with code: %d\n", err - 1);
 
     return 0;
 }
